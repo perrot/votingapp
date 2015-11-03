@@ -1,0 +1,24 @@
+<%- include auth-header %>
+
+  <div id="signup-form" style="padding:20px;">
+<form action="/settings" method="post">
+    <span id="subtitle" style="font-size:24px;">
+      Change Password</span>
+    <br/>
+    <span id="subtitle" style="font-size:12px;font-weight:bold">
+      Current Password</span>
+    <input type="password" class="form-control" id="inputName" placeholder="">
+    <br/>
+    <span id="subtitle" style="font-size:12px;font-weight:bold">
+      New Password</span>
+    <input type="password" class="form-control" id="inputName" placeholder="">
+    <br/>
+<% if (message.length > 0) {%>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+    <br/>
+    <button type="submit" class="btn btn-primary " style="width:200px">Save changes</button>
+</form>
+  </div>
+</div>
+<%- include footer %>

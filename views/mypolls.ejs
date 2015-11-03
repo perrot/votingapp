@@ -1,0 +1,37 @@
+<%- include auth-header %>
+  <div style="background:#29A3CC ;text-align:center;color:white;padding:1px 0px 40px 0px">
+    <h1 style="padding-top:40px;font-size:48px">Dashboard</h1>
+    <span id="subtitle" style="font-size:16px;">
+      What would you like to do today?</span><br/><br/>
+    <button class="btn btn-success" onclick="window.location.href='/profile'">New Poll</button>
+    <button class="btn btn-primary"  onclick="window.location.href='/mypolls'">My Polls</button>
+  </div>
+<form action="/mypolls" method="post">
+<input type="text" name="delindex" class="delindex" value="" style="display:none"/>
+    <input type="text" name="pollindex" class="pollindex" value="" style="display:none"/>
+<table style="width:40%;margin:auto;text-align:left" class="table table-hover">
+      <tr><th>#</th><th>Poll Name</th><th>Delete</th></tr>
+<% for(var i=0; i<user.local.polls.length; i++) { %>
+<tr><td><%= i+1 %></td><td><a href="javascript:;" style="display:block"><%= user.local.polls[i].name %></a></td><td><input type="submit" value="Delete"/></td></tr>
+
+<% } %>
+</table>
+</form>
+<%- include footer %>
+<script>
+$("input[type=submit]").click(function() {
+	$('.delindex').val($(this).parent().parent().children(0).html()-1); 
+});
+$("a[href$='javascript:;']").click(function() {
+	$('.pollindex').val($(this).parent().parent().children(0).html()-1);
+	$(this).closest('form').submit();
+/*
+	$.post("/mypolls",
+		{
+		pollindex:$('.pollindex').val(),
+		delindex:$('.delindex').val()
+		},function(data){}
+	);
+*/
+});
+</script>

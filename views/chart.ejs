@@ -1,0 +1,49 @@
+<% if(user.local.guest.role){ %>
+<%- include header %>
+<link rel="stylesheet" href="https://<%= user.local.host %>/css/style.css">
+<% }else{ %>
+<%- include auth-header %>
+<% } %>
+  <div style="background:#29A3CC ;text-align:center;color:white;padding:1px 0px 40px 0px">
+    <h1 style="padding-top:40px;font-size:48px">Dashboard</h1>
+    <span id="subtitle" style="font-size:16px;">
+      What would you like to do today?</span><br/><br/>
+<% if(!user.local.guest.role){ %>
+    <button class="btn btn-success" onclick="window.location.href='/profile'">New Poll</button>
+    <button class="btn btn-primary"  onclick="window.location.href='/mypolls'">My Polls</button>
+<%}else{%>
+    <button class="btn btn-success" onclick="window.location.href='<%= user.local.guest.url%>'">Back</button>
+<%}%>
+  </div>
+<div id="barchart_material" style="width: 100%; height: 500px;margin:auto" class="center"></div>
+</table>
+</form>
+<%- include footer %>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+google.load("visualization", "1.1", {packages:["bar"]});
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Poll', 'Aggregate'],
+	<% for(var i=0; i<poll.opts.length; i++) { %>
+		  ['<%= poll.opts[i].name %>', <%= poll.opts[i].count %>]
+		<% if(i!=poll.opts.length-1){ %>
+			  ,
+		<% } %>
+	<% } %>
+        ]);
+
+        var options = {
+          chart: {
+            title: '<%= poll.name %>',
+            subtitle: '',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, options);
+}
+</script>

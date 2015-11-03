@@ -1,0 +1,56 @@
+<%- include auth-header %>
+  <div style="background:#29A3CC ;text-align:center;color:white;padding:1px 0px 40px 0px">
+    <h1 style="padding-top:40px;font-size:48px">Dashboard</h1>
+    <span id="subtitle" style="font-size:16px;">
+      What would you like to do today?</span><br/><br/>
+    <button class="btn btn-success" onclick="window.location.href='/profile'">New Poll</button>
+    <button class="btn btn-primary" onclick="window.location.href='/mypolls'">My Polls</button>
+  </div>
+<% if(showform) { %>
+  <div id="signup-form" class="center" style="padding:20px;"  >
+     <span id="subtitle" style="font-size:24px;">
+      New Poll</span><br/>
+    <form action="/profile" method="post">
+    <span id="subtitle" style="font-size:12px;font-weight:bold">
+      Name your poll.</span>
+    <input type="text" class="form-control"  id="inputName" name="pollname" placeholder="What is your favorite brand?" style="width:40%;margin:auto" required><br/>
+  <span id="subtitle" style="font-size:12px;font-weight:bold">
+      Options</span>
+    <div id="optionList">
+    <input type="text" name="option1" class="form-control"   id="exampleInputEmail1" placeholder="Coke" name="Coke" style="width:40%;margin:auto" required>
+  
+    <input type="text"  name="option2" class="form-control"   id="exampleInputEmail1" placeholder="Pepsi" name="Coke" style="width:40%;margin:auto" required>
+    </div>
+    <br/>
+    <button class="btn btn-default" style="width:200px" onclick="addOption()">More Options</button><br/><br/>
+    <button type="submit" class="btn btn-success" style="width:200px">Submit</button>
+</form>
+<% } else { %>
+  <div id="signup-form" class="center" style="padding:20px;">
+     <span id="subtitle" style="font-size:24px;">
+      Congratulations!</span><br/>
+    <span id="subtitle" style="font-size:12px;font-weight:bold">
+      Your poll has been posted to</span><br/>
+<a href='<%= user.local.polls[user.local.polls.length-1].link %>'><%= user.local.polls[user.local.polls.length-1].link %></a>
+<% } %>
+   <!-- disabled --> 
+  </div>
+  <div id="login-form" style="padding:20px;display:none">
+    <form action="/login" method="post">
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+  </div>
+    <button type="submit" class="btn btn-success" style="width:200px">Login</button>
+    <button type="submit" class="btn btn-primary" style="width:200px"><i class="fa fa-twitter "></i>Connect with Twitter</button>
+    </form>
+  </div>
+</div>
+<%- include footer %>
+<script>
+$("#home").addClass("bg-lightgray");
+</script>

@@ -1,0 +1,52 @@
+<% if(user.local.guest.role){ %>
+<%- include header %>
+<link rel="stylesheet" href="https://<%= user.local.host %>/css/style.css">
+<% }else{ %>
+<%- include auth-header %>
+<% } %>
+  <div style="background:#29A3CC ;text-align:center;color:white;padding:1px 0px 40px 0px">
+    <h1 style="padding-top:40px;font-size:48px">Dashboard</h1>
+    <span id="subtitle" style="font-size:16px;">
+      What would you like to do today?</span><br/><br/>
+<% if(!user.local.guest.role){ %>
+    <button class="btn btn-success" onclick="window.location.href='/profile'">New Poll</button>
+    <button class="btn btn-primary"  onclick="window.location.href='/mypolls'">My Polls</button>
+<% } %>
+  </div>
+<div class="row">
+    <div class="col-xs-4 center">
+      <h1><%= poll.name %></h1>
+      <h4>by <%= user.local.name %></h4></div>
+    <div class="col-xs-4">
+<% if(user.local.guest.role){ %>
+      <form action="<%= user.local.guest.url %>" method="post">
+<% }else{ %>
+      <form action="/mypolls" method="post">
+<% } %>
+        <input type="text" name="option" class="option" value="" style="display:none" />
+        <input type="text" name="index" value="<%= pollindex %>" style="display:none" />
+        <table style="padding:20px;margin:auto;text-align:left" class="table table-hover">
+          <tr>
+            <th>#</th>
+            <th>Option</th>
+          </tr>
+<% for(var i=0; i<poll.opts.length; i++) { %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td>
+              <input type="radio" /><%= poll.opts[i].name %></td>
+          </tr>
+<% } %>
+        </table>
+        <input type="submit" class="btn btn-success btn-width" value="Vote!"/>      </form>
+    </div>
+    <div class="col-xs-4">Sorry , no comments yet.</div>
+  </div>
+</form>
+<%- include footer %>
+<script>
+$('input[type=radio]').on('change', function(){
+	$('.option').val($(this).parent().prev().text()-1);
+	$('input[type=radio]').not(this).prop('checked', false);
+}); 
+</script>

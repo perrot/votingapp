@@ -1,0 +1,35 @@
+<%- include header %>
+  <div style="background:#29A3CC ;text-align:center;color:white;padding:1px 0px 40px 0px">
+    <h1 style="padding-top:40px;font-size:48px">VotePlex</h1>
+    <span id="subtitle" style="font-size:16px;">
+      Create custom polls with live results.</span>
+    <br/>
+  </div>
+  <div id="signup-form" style="padding:20px;">
+     <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+    <form action="/signup" method="post">
+    <div class="form-group">
+    <label for="inputName">Name</label>
+    <input type="name" class="form-control" id="inputName" placeholder="Name" name="name">
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+  </div>
+    <button type="submit" class="btn btn-success" style="width:200px">Sign up</button>
+<!--
+    <button type="button" onclick="javascript:location.href='/auth/twitter'" class="btn btn-primary" style="width:200px"><i class="fa fa-twitter "></i>Connect with Twitter</button>
+-->
+    </form>
+  </div>
+</div>
+<%- include footer %>
+<script>
+$("#signup").addClass("bg-lightgray");
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <meta charset="UTF-8">
+    <title>Perrot Voting App | <%= title %></title>
+    
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+<div>
+  <div class="row banner">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-1 padding" style="font-weight:bold">
+      <a href="/">VotePlex</a>
+    </div>
+    <div class="col-xs-1 padding center btn-width bg-lightgray" id="home">
+      <a href="/">Home</a>
+    </div>
+    <div class="col-xs-6">
+    </div>
+    <div class="col-xs-2 padding center btn-width  text-nowrap" id="signup">
+       <% if (user.local.email) { %>
+      Hello <%= user.local.name%>
+         <% } %>
+    </div>
+    <div class="col-xs-1 padding center" id="login">
+<!--
+      <a href="/settings" style="display:block"><i class="fa fa-gear"></i></a>
+-->
+    </div>
+    <div class="col-xs-1 padding center btn-width" id="login">
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
