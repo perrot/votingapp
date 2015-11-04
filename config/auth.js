@@ -10,8 +10,8 @@ module.exports = {
     },
 
 'twitterAuth' : {
-        'consumerKey'        : 'CGzYryElFCfoAUkX577LdC4Ty',
-        'consumerSecret'     : 'v2bGFctlPiBgrE1nXN4X1WmDnZqLDHvVnFHg3NfoYyYUndAdpo',
+        'consumerKey'        : 'xC6O9Lf69qZWjVm24MsYsAE9X',
+        'consumerSecret'     : 'jdNT4SofY5Bp1aMtpwRfIjogHxKMCdUedMmaoACgLRF6eraZk4',
         'CALLBACKURL'        : ''
     },
     'googleAuth' : {
